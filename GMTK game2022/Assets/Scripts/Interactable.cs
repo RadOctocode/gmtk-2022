@@ -20,6 +20,5 @@ public class Interactable : MonoBehaviour
     {
         GameObject activePlayer = GameObject.Find("player");
         activePlayer.GetComponent<clickToMove>().setObject(this);
-        Debug.Log(transform.position);
     }
 }
