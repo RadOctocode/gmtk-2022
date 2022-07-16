@@ -6,24 +6,28 @@ public class ActionPointHandler : MonoBehaviour
 {
     public int actionPoints;
     public int maxNum;
-    public bool noPoints;
-    // Start is called before the first frame update
-    void Start(){
+
+    void Start()
+    {
         actionPoints = 0;
-        noPoints = false;
     }
 
-    void Update() {
-        if (actionPoints <= 0) {
-            noPoints = true;
-        }
+    void Update()
+    {
     }
 
-    void deductActionPoint() {
+    bool HasNoPoints()
+    {
+        return actionPoints <= 0;
+    }
+
+    void deductActionPoint()
+    {
         actionPoints = actionPoints - 1;
     }
 
-    public void setActionPoints(int setPoints) {
+    public void setActionPoints(int setPoints)
+    {
         actionPoints = setPoints;
     }
 
