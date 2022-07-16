@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class clickToMove : MonoBehaviour
+public class ClickToMove : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public Interactable clicked;
-    public int layerMask;
+    NavMeshAgent agent;
+    Interactable clicked;
+    int layerMask;
+    public HeistController heistController;
 
     // Update is called once per frame
     public void setObject(Interactable objective) {
@@ -15,11 +16,19 @@ public class clickToMove : MonoBehaviour
     }
 
     void Start() {
+        agent = GetComponent<NavMeshAgent>();
         clicked = null;
         layerMask = 1 << 6;
     }
 
     void Update()
+    {
+        if (heistController.turn == HeistController.Team.Thieves) {
+            MoveThieves();
+        }
+    }
+
+    void MoveThieves()
     {
         if(Input.GetMouseButtonDown(1)){
             Ray movePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -29,5 +38,4 @@ public class clickToMove : MonoBehaviour
             }
         }
     }
-
 }

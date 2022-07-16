@@ -19,6 +19,6 @@ public class Interactable : MonoBehaviour
     void OnMouseDown()
     {
         GameObject activePlayer = GameObject.Find("player");
-        activePlayer.GetComponent<clickToMove>().setObject(this);
+        activePlayer.GetComponent<ClickToMove>().setObject(this);
     }
 }
