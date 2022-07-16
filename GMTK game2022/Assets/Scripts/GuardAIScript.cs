@@ -33,10 +33,10 @@ public class GuardAIScript : MonoBehaviour
     void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerPieceMask);
-        /*if (playerInSightRange) {
+        if (playerInSightRange) {
             getPlayerPiece(transform.position);
             chasing = true;
-        }*/
+        }
         if (!chasing) {
             Patrol();
         }
@@ -47,7 +47,6 @@ public class GuardAIScript : MonoBehaviour
 
     public void AddDestination(Vector3 destination){
         enemyRoute.Enqueue(destination);
-
     }
 
     void getPlayerPiece(Vector3 lastSpot) {
@@ -77,8 +76,13 @@ public class GuardAIScript : MonoBehaviour
     }
 
     void Chase() {
+        Vector3 distanceToWalkPoint = transform.position - chasePiece.transform.position;
+
+        if (distanceToWalkPoint.magnitude < 1f) {
+            chasing = false;
+            Debug.Log("caught!");
+        }
         agent.SetDestination(chasePiece.transform.position);
-    
     }
 
     void setEndPoint() {
