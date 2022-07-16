@@ -12,7 +12,6 @@ public class GuardAIScript : MonoBehaviour
     private NavMeshAgent agent;
     private Vector3 currentWalkPoint;
     private Queue<Vector3> enemyRoute;
-    private bool playerInSightRange;
     
     public float sightRange;
     // Start is called before the first frame update
@@ -23,7 +22,6 @@ public class GuardAIScript : MonoBehaviour
         playerPieceMask = 1 << 7;
         walkPointSet = false;
         chasing = false;
-        playerInSightRange = false;
 
         enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, -6.0f));
         enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, 6.0f));
@@ -32,9 +30,9 @@ public class GuardAIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerPieceMask);
-        if (playerInSightRange) {
-            getPlayerPiece(transform.position);
+        getPlayerPiece(transform.position);
+
+        if (chasePiece != null) {
             chasing = true;
         }
         if (!chasing) {
@@ -53,8 +51,14 @@ public class GuardAIScript : MonoBehaviour
         var collidersInSight = Physics.OverlapSphere(lastSpot, sightRange, playerPieceMask);
         foreach (var collider in collidersInSight) {
             var currentObject = collider.gameObject;
-            if (currentObject != null){
+            if (currentObject != null && !currentObject.GetComponent<Freeze>().caught)
+            {
                 chasePiece = currentObject;
+            }
+            else if (currentObject.GetComponent<Freeze>().caught) {
+                Debug.Log("hello");
+                chasing = false;
+                chasePiece = null;
             }
         }
 
@@ -76,13 +80,16 @@ public class GuardAIScript : MonoBehaviour
     }
 
     void Chase() {
+        Collider currentCollider = gameObject.GetComponent<Collider>();
+        Collider playerCollider = chasePiece.GetComponent<Collider>();
         Vector3 distanceToWalkPoint = transform.position - chasePiece.transform.position;
-
-        if (distanceToWalkPoint.magnitude < 1f) {
-            chasing = false;
-            Debug.Log("caught!");
-        }
         agent.SetDestination(chasePiece.transform.position);
+
+        if (currentCollider.bounds.Intersects(playerCollider.bounds)) {
+            chasing = false;
+            chasePiece.GetComponent<Freeze>().gotCaught();
+            chasePiece = null;
+        }
     }
 
     void setEndPoint() {
