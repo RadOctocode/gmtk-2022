@@ -11,15 +11,20 @@ public class AssignNumber : MonoBehaviour
     private int BOTH_SIDES_CONNECTED = 2;
     private int connectionStatus;
     private ActionPointHandler gamePieceActionPoints;
+    private Highlight _highlighter;
+
 
     public int maxNum;
     void Start(){
         connectionStatus = NO_SIDE_CONNECTED;
+        _highlighter = GetComponent<Highlight>();
+
 
     }
 
     void Update(){
         if (connectionStatus == ONE_SIDE_CONNECTED) {
+            _highlighter.Highlighted = true;
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -36,6 +41,7 @@ public class AssignNumber : MonoBehaviour
 
         if (connectionStatus == BOTH_SIDES_CONNECTED){
             gamePieceActionPoints.setActionPoints(Roll());
+            _highlighter.Highlighted = false;
             Destroy(this.gameObject);
         }
     }
