@@ -4,36 +4,43 @@ using UnityEngine;
 
 public class HeistController : MonoBehaviour
 {
-    public enum Team {
+    public enum Team
+    {
         Thieves,
         Guards,
     };
 
     public Team turn;
+    ActionPointHandler[] actionPoints;
+    public ClickToMove activeInput;
 
     // Start is called before the first frame update
     void Start()
     {
         turn = Team.Thieves;
+        actionPoints = Object.FindObjectsOfType<ActionPointHandler>();
     }
 
-    void NextTurn()
+    public void NextTurn()
     {
-        switch (turn) {
+        switch (turn)
+        {
             case Team.Thieves:
-            Debug.Log("Move to Guards' turn");
-            turn = Team.Guards;
-            break;
+                Debug.Log("Move to Guards' turn");
+                turn = Team.Guards;
+                break;
             case Team.Guards:
-            Debug.Log("Move to Thieves' turn");
-            turn = Team.Thieves;
-            break;
+                Debug.Log("Move to Thieves' turn");
+                turn = Team.Thieves;
+                break;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetActiveInput(ClickToMove input)
     {
-
+        if (activeInput == null)
+        {
+            activeInput = input;
+        }
     }
 }
