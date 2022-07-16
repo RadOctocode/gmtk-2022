@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class clickToMove : MonoBehaviour
+public class ClickToMove : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public Interactable clicked;
-    public int layerMask;
+    NavMeshAgent agent;
+    Interactable clicked;
+    int layerMask;
 
     // Update is called once per frame
     public void setObject(Interactable objective) {
@@ -15,6 +15,7 @@ public class clickToMove : MonoBehaviour
     }
 
     void Start() {
+        agent = GetComponent<NavMeshAgent>();
         clicked = null;
         layerMask = 1 << 6;
     }
