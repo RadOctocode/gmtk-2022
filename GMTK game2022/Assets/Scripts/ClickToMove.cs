@@ -5,14 +5,17 @@ using UnityEngine.AI;
 
 public class ClickToMove : MonoBehaviour
 {
+    Animator animatorController;
     NavMeshAgent agent;
     int interactiveLayer;
     int playerLayer;
     HeistController heistController;
     Highlight _highlighter;
+    bool isSneaking = false;
 
     void Start()
     {
+        animatorController = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         interactiveLayer = 1 << 6;
         playerLayer = 1 << 7;
@@ -68,9 +71,16 @@ public class ClickToMove : MonoBehaviour
         {
             if (CastAtClick(out var hitInfo, interactiveLayer))
             {
+                isSneaking = true;
                 agent.SetDestination(hitInfo.point);
             }
         }
+        if (agent.remainingDistance <= agent.stoppingDistance) {
+            isSneaking = false;
+        } else {
+            isSneaking = true;
+        }
+        animatorController.SetBool("sneak", isSneaking);
     }
 
     bool CastAtClick(out RaycastHit hitInfo, int layer)
