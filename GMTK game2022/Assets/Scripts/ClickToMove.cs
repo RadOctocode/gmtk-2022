@@ -10,11 +10,8 @@ public class ClickToMove : MonoBehaviour
     int interactiveLayer;
     int playerLayer;
     HeistController heistController;
-<<<<<<< HEAD:GMTK game2022/Assets/Scripts/clickToMove.cs
-    bool isSneaking = false;
-=======
     Highlight _highlighter;
->>>>>>> 1131ea8 (Hallfox (#9)):GMTK game2022/Assets/Scripts/ClickToMove.cs
+    bool isSneaking = false;
 
     void Start()
     {
