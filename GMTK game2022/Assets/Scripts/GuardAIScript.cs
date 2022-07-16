@@ -7,45 +7,89 @@ public class GuardAIScript : MonoBehaviour
 {
     private int playerPieceMask;
     private bool walkPointSet;
+    private bool chasing;
+    private GameObject chasePiece;
     private NavMeshAgent agent;
     private Vector3 currentWalkPoint;
-
-    public Vector3 pointA;
-    public Vector3 pointB;
-
+    private Queue<Vector3> enemyRoute;
+    private bool playerInSightRange;
+    
+    public float sightRange;
     // Start is called before the first frame update
     void Start()
     {
+        enemyRoute = new Queue<Vector3>();
         agent = GetComponent<NavMeshAgent>();
         playerPieceMask = 1 << 7;
         walkPointSet = false;
-        transform.position;
+        chasing = false;
+        playerInSightRange = false;
+
+        enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, -6.0f));
+        enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, 6.0f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!walkPointSet) {
-            setWalkPoint();
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerPieceMask);
+        /*if (playerInSightRange) {
+            getPlayerPiece(transform.position);
+            chasing = true;
+        }*/
+        if (!chasing) {
+            Patrol();
         }
-        if (walkPointSet) {
-            Vector3 distanceToWalkPoint = transform.position - currentWalkPoint;
-            if (distanceToWalkPoint.magnitude < 1f) {
-            
-            }
-            //check if im within range of the new point
-            //if so unset walkpointset
-
+        if (chasing) {
+            Chase();
         }
     }
 
-    void setWalkPoint() {
-        if (currentWalkPoint == pointA) {
-            currentWalkPoint = pointB;
+    public void AddDestination(Vector3 destination){
+        enemyRoute.Enqueue(destination);
+
+    }
+
+    void getPlayerPiece(Vector3 lastSpot) {
+        var collidersInSight = Physics.OverlapSphere(lastSpot, sightRange, playerPieceMask);
+        foreach (var collider in collidersInSight) {
+            var currentObject = collider.gameObject;
+            if (currentObject != null){
+                chasePiece = currentObject;
+            }
         }
-        if (currentWalkPoint == pointB) {
-            currentWalkPoint = pointA;
+
+    }
+
+    void Patrol() {
+        if (!walkPointSet)
+        {
+            setEndPoint();
         }
+
+        agent.SetDestination(currentWalkPoint);
+
+        Vector3 distanceToWalkPoint = transform.position - currentWalkPoint;
+        if (distanceToWalkPoint.magnitude < 1f)
+        {
+            moveDestination();
+        }
+    }
+
+    void Chase() {
+        agent.SetDestination(chasePiece.transform.position);
+    
+    }
+
+    void setEndPoint() {
+        currentWalkPoint = enemyRoute.Dequeue();
         walkPointSet = true;
     }
+
+    void moveDestination() {
+        enemyRoute.Enqueue(currentWalkPoint);
+        walkPointSet = false;
+            
+    }
+
 }

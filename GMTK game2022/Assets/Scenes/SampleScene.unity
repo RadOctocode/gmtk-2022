@@ -678,8 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10f47ac16678de4bb7e5e455249c3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {x: 0, y: 0, z: 0}
-  pointB: {x: 0, y: 0, z: 0}
+  sightRange: 4
 --- !u!1001 &176719825126472439
 PrefabInstance:
   m_ObjectHideFlags: 0
