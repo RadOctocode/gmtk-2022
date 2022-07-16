@@ -12,7 +12,7 @@ public class HeistController : MonoBehaviour
 
     public Team turn;
     ActionPointHandler[] actionPoints;
-    public ClickToMove activeInput;
+    public ClickToMove ActivePlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +36,13 @@ public class HeistController : MonoBehaviour
         }
     }
 
-    public void SetActiveInput(ClickToMove input)
+    public void SelectActivePlayer(ClickToMove input)
     {
-        if (activeInput == null)
-        {
-            activeInput = input;
-        }
+        ActivePlayer = input;
+    }
+
+    public void UnsetActivePlayer()
+    {
+        ActivePlayer = null;
     }
 }
