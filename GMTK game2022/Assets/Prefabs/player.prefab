@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4973488860620781374}
   - component: {fileID: 4973488860620781375}
   - component: {fileID: 4973488860620781368}
+  - component: {fileID: 7074844546017566700}
   - component: {fileID: 4973488860620781369}
   - component: {fileID: 5136819532225637594}
   - component: {fileID: 4973488860620781372}
@@ -87,6 +88,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7074844546017566700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4973488860620781371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1b081e51ece064c8972487d774f6ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heistController: {fileID: 0}
 --- !u!136 &4973488860620781369
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -128,9 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1b081e51ece064c8972487d774f6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 4973488860620781373}
-  clicked: {fileID: 0}
-  layerMask: 0
+  heistController: {fileID: 0}
 --- !u!195 &4973488860620781373
 NavMeshAgent:
   m_ObjectHideFlags: 0
