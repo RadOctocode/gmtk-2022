@@ -10,7 +10,11 @@ public class ClickToMove : MonoBehaviour
     int interactiveLayer;
     int playerLayer;
     HeistController heistController;
+<<<<<<< HEAD:GMTK game2022/Assets/Scripts/clickToMove.cs
     bool isSneaking = false;
+=======
+    Highlight _highlighter;
+>>>>>>> 1131ea8 (Hallfox (#9)):GMTK game2022/Assets/Scripts/ClickToMove.cs
 
     void Start()
     {
@@ -19,6 +23,7 @@ public class ClickToMove : MonoBehaviour
         interactiveLayer = 1 << 6;
         playerLayer = 1 << 7;
         heistController = Object.FindObjectOfType<HeistController>();
+        _highlighter = GetComponent<Highlight>();
     }
 
     void Update()
@@ -31,11 +36,11 @@ public class ClickToMove : MonoBehaviour
 
     void OnThiefInputs()
     {
-        if (heistController.activeInput == null)
+        if (heistController.ActivePlayer == null)
         {
             HandlePlayerSelection();
         }
-        else if (heistController.activeInput == this)
+        else if (heistController.ActivePlayer == this)
         {
             HandlePlayerAction();
         }
@@ -51,7 +56,7 @@ public class ClickToMove : MonoBehaviour
                 if (hitInfo.transform.gameObject == gameObject)
                 {
                     Debug.Log($"Setting active player input {name}");
-                    heistController.activeInput = this;
+                    heistController.SelectActivePlayer(this);
                 }
             }
         }
@@ -62,7 +67,8 @@ public class ClickToMove : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log($"Unsetting active player input {name}");
-            heistController.activeInput = null;
+            _highlighter.Highlighted = false;
+            heistController.UnsetActivePlayer();
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -85,5 +91,21 @@ public class ClickToMove : MonoBehaviour
         Ray movePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.Log("mouse position " + Input.mousePosition);
         return Physics.Raycast(movePosition, out hitInfo, Mathf.Infinity, layer);
+    }
+
+    void OnMouseOver()
+    {
+        if (heistController.ActivePlayer == null)
+        {
+            _highlighter.Highlighted = true;
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if (heistController.ActivePlayer == null)
+        {
+            _highlighter.Highlighted = false;
+        }
     }
 }
