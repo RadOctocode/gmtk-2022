@@ -30,26 +30,28 @@ public class GuardAIScript : MonoBehaviour
         enemyRoute.Enqueue(new Vector3(-6.0f, 0.0f, 5.0f));
         enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, 6.0f));
         enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, -6.0f));
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (heistController.turn == HeistController.Team.Guards && !turnTaken){
+        if (heistController.turn == HeistController.Team.Guards && !turnTaken)
+        {
             takeOneGuardTurn();
         }
-        if (heistController.turn == HeistController.Team.Thieves) {
+        if (heistController.turn == HeistController.Team.Thieves)
+        {
             turnTaken = false;
         }
     }
 
-    public void AddDestination(Vector3 destination){
+    public void AddDestination(Vector3 destination)
+    {
         enemyRoute.Enqueue(destination);
     }
 
-    void takeOneGuardTurn() {
+    void takeOneGuardTurn()
+    {
 
         getPlayerPiece(transform.position);
 
@@ -67,15 +69,18 @@ public class GuardAIScript : MonoBehaviour
         }
     }
 
-    void getPlayerPiece(Vector3 lastSpot) {
+    void getPlayerPiece(Vector3 lastSpot)
+    {
         var collidersInSight = Physics.OverlapSphere(lastSpot, sightRange, playerPieceMask);
-        foreach (var collider in collidersInSight) {
+        foreach (var collider in collidersInSight)
+        {
             var currentObject = collider.gameObject;
             if (currentObject != null && !currentObject.GetComponent<Freeze>().caught)
             {
                 chasePiece = currentObject;
             }
-            else if (currentObject.GetComponent<Freeze>().caught) {
+            else if (currentObject.GetComponent<Freeze>().caught)
+            {
                 chasing = false;
                 chasePiece = null;
             }
@@ -83,7 +88,8 @@ public class GuardAIScript : MonoBehaviour
 
     }
 
-    void Patrol() {
+    void Patrol()
+    {
         if (!walkPointSet)
         {
             setEndPoint();
@@ -100,13 +106,15 @@ public class GuardAIScript : MonoBehaviour
         }
     }
 
-    void Chase() {
+    void Chase()
+    {
         Collider currentCollider = gameObject.GetComponent<Collider>();
         Collider playerCollider = chasePiece.GetComponent<Collider>();
         Vector3 distanceToWalkPoint = transform.position - chasePiece.transform.position;
         agent.SetDestination(chasePiece.transform.position);
 
-        if (currentCollider.bounds.Intersects(playerCollider.bounds)) {
+        if (currentCollider.bounds.Intersects(playerCollider.bounds))
+        {
             heistController.turn = HeistController.Team.GameOver;
             chasing = false;
             chasePiece.GetComponent<Freeze>().gotCaught();
@@ -115,15 +123,17 @@ public class GuardAIScript : MonoBehaviour
         }
     }
 
-    void setEndPoint() {
+    void setEndPoint()
+    {
         currentWalkPoint = enemyRoute.Dequeue();
         walkPointSet = true;
     }
 
-    void moveDestination() {
+    void moveDestination()
+    {
         enemyRoute.Enqueue(currentWalkPoint);
         walkPointSet = false;
-            
+
     }
 
 }
