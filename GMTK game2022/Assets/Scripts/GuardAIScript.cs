@@ -27,8 +27,11 @@ public class GuardAIScript : MonoBehaviour
         chasing = false;
         turnTaken = false;
 
-        enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, -6.0f));
+        enemyRoute.Enqueue(new Vector3(-6.0f, 0.0f, 5.0f));
         enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, 6.0f));
+        enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, -6.0f));
+
+
     }
 
     // Update is called once per frame
