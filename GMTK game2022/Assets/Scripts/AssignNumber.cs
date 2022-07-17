@@ -12,14 +12,14 @@ public class AssignNumber : MonoBehaviour
     private int connectionStatus;
     private ActionPointHandler gamePieceActionPoints;
     private Highlight _highlighter;
+    ActionPointManager rollHUD;
 
 
     public int maxNum;
     void Start(){
         connectionStatus = NO_SIDE_CONNECTED;
         _highlighter = GetComponent<Highlight>();
-
-
+        rollHUD = Object.FindObjectOfType<ActionPointManager>();
     }
 
     void Update(){
@@ -40,9 +40,12 @@ public class AssignNumber : MonoBehaviour
         }
 
         if (connectionStatus == BOTH_SIDES_CONNECTED){
-            gamePieceActionPoints.SetActionPoints(Roll());
+            int roll = Roll();
+            gamePieceActionPoints.SetActionPoints(roll);
+            rollHUD.SetActionPoints(roll);
             _highlighter.Highlighted = false;
-            Destroy(this.gameObject);
+            this.gameObject.transform.Rotate(new Vector3(300f, 300f, 300f) * Time.deltaTime);
+            Destroy(this.gameObject, 2);
         }
     }
 
