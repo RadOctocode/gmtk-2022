@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: de8aa94833095bc42a0ba5a76fda1771, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 0e8438c7bbce9064b873232328e5e39e, type: 2}
 --- !u!1001 &478666542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,15 +140,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 176719826483616398, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5212336
+      value: -18
       objectReference: {fileID: 0}
     - target: {fileID: 176719826483616398, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.16
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 176719826483616398, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.399515
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 176719826483616398, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_LocalRotation.w
@@ -212,6 +212,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 0}
   turn: 0
   ActivePlayer: {fileID: 0}
+  Dice: {fileID: 176719826483616387, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
 --- !u!4 &635482037
 Transform:
   m_ObjectHideFlags: 0
@@ -630,7 +631,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9032881044537645921, guid: 12effe97f32a84a4ba375cd7527f9239, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9032881044537645922, guid: 12effe97f32a84a4ba375cd7527f9239, type: 3}
       propertyPath: m_Pivot.x
@@ -720,26 +721,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverScene
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9032881044537645923, guid: 12effe97f32a84a4ba375cd7527f9239, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12effe97f32a84a4ba375cd7527f9239, type: 3}
---- !u!1 &1134892719 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9032881044537645934, guid: 12effe97f32a84a4ba375cd7527f9239, type: 3}
-  m_PrefabInstance: {fileID: 1134892718}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1134892720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134892719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73c1b02a59b7c984ca6ea4b4df4bf0a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1438511580
 PrefabInstance:
   m_ObjectHideFlags: 0
