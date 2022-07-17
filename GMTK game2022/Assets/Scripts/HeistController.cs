@@ -11,7 +11,6 @@ public class HeistController : MonoBehaviour
         GameOver
     };
 
-    public bool gameOver;
     public GameOverScript gameOverScreen;
     public Team turn;
     ActionPointHandler[] actionPoints;
@@ -22,7 +21,6 @@ public class HeistController : MonoBehaviour
     {
         turn = Team.Thieves;
         actionPoints = Object.FindObjectsOfType<ActionPointHandler>();
-        gameOver = false;
         gameOverScreen.Unset();
 
     }
