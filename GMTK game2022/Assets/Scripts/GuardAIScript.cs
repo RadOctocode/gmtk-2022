@@ -17,11 +17,13 @@ public class GuardAIScript : MonoBehaviour
     private Queue<Vector3> enemyRoute;
     private HeistController heistController;
     public float sightRange;
+    Animator animatorController;
 
     void Start()
     {
         enemyRoute = new Queue<Vector3>(route);
         agent = GetComponent<NavMeshAgent>();
+        animatorController = GetComponent<Animator>();
         heistController = Object.FindObjectOfType<HeistController>();
         playerPieceMask = 1 << 7;
         walkPointSet = false;
@@ -99,6 +101,8 @@ public class GuardAIScript : MonoBehaviour
             moveDestination();
             turnTaken = true;
         }
+
+        animatorController.SetBool("walk", walkPointSet);
     }
 
     void Chase()
