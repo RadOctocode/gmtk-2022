@@ -80,7 +80,7 @@ public class ClickToMove : MonoBehaviour
                 agent.SetDestination(hitInfo.point);
             }
         }
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance + 0.5)
         {
             isSneaking = false;
         }
