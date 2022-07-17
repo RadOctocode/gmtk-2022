@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: de8aa94833095bc42a0ba5a76fda1771, type: 2}
---- !u!114 &699656043 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9032881044537645923, guid: 12effe97f32a84a4ba375cd7527f9239, type: 3}
-  m_PrefabInstance: {fileID: 9032881044163230728}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433924a53b9668b45bcb13390c98a2c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,9 +581,13 @@ PrefabInstance:
       value: GameMaster
       objectReference: {fileID: 0}
     - target: {fileID: 4981010885908242604, guid: 2a1e7fd533e267449b8919ac35229212, type: 3}
+      propertyPath: Dice
+      value: 
+      objectReference: {fileID: 176719826483616387, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
+    - target: {fileID: 4981010885908242604, guid: 2a1e7fd533e267449b8919ac35229212, type: 3}
       propertyPath: gameOverScreen
       value: 
-      objectReference: {fileID: 699656043}
+      objectReference: {fileID: 0}
     - target: {fileID: 4981010885908242605, guid: 2a1e7fd533e267449b8919ac35229212, type: 3}
       propertyPath: m_RootOrder
       value: 10

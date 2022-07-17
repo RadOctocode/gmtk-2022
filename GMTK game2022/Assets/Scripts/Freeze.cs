@@ -7,34 +7,21 @@ public class Freeze : MonoBehaviour
     private Highlight _highlighter;
     public bool caught;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         _highlighter = GetComponent<Highlight>();
         caught = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void gotCaught()
     {
-        if (caught)
-        {
-            _highlighter.Highlighted = true;
-        }
-
-        else {
-            _highlighter.Highlighted = false;
-
-        }
-    }
-
-    public void gotCaught(){
         caught = true;
-    
+        _highlighter.Highlighted = true;
     }
 
-    public void gotFreed(){
+    public void gotFreed()
+    {
         caught = false;
+        _highlighter.Highlighted = false;
     }
 }

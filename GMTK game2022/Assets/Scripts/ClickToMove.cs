@@ -100,7 +100,7 @@ public class ClickToMove : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (heistController.ActivePlayer == null)
+        if (IsPlayerTurn() && heistController.ActivePlayer == null)
         {
             _highlighter.Highlighted = true;
         }
@@ -108,9 +108,14 @@ public class ClickToMove : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (heistController.ActivePlayer == null)
+        if (IsPlayerTurn() && heistController.ActivePlayer == null)
         {
             _highlighter.Highlighted = false;
         }
+    }
+
+    bool IsPlayerTurn()
+    {
+        return heistController.turn == HeistController.Team.Thieves;
     }
 }
