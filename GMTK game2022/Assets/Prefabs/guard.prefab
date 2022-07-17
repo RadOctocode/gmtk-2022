@@ -98,6 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10f47ac16678de4bb7e5e455249c3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  route:
+  - {x: -6, y: 0, z: 5}
+  - {x: -2, y: 0, z: 6}
+  - {x: -2, y: 0, z: -6}
   sightRange: 4
 --- !u!135 &5174737916228695539
 SphereCollider:

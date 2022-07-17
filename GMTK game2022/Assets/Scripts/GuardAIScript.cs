@@ -9,30 +9,26 @@ public class GuardAIScript : MonoBehaviour
     private bool walkPointSet;
     private bool chasing;
     private bool turnTaken;
+    public bool TurnTaken { get => turnTaken; }
     private GameObject chasePiece;
     private NavMeshAgent agent;
     private Vector3 currentWalkPoint;
+    [SerializeField] private List<Vector3> route;
     private Queue<Vector3> enemyRoute;
     private HeistController heistController;
-
     public float sightRange;
-    // Start is called before the first frame update
+
     void Start()
     {
-        enemyRoute = new Queue<Vector3>();
+        enemyRoute = new Queue<Vector3>(route);
         agent = GetComponent<NavMeshAgent>();
         heistController = Object.FindObjectOfType<HeistController>();
         playerPieceMask = 1 << 7;
         walkPointSet = false;
         chasing = false;
         turnTaken = false;
-
-        enemyRoute.Enqueue(new Vector3(-6.0f, 0.0f, 5.0f));
-        enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, 6.0f));
-        enemyRoute.Enqueue(new Vector3(-2.0f, 0.0f, -6.0f));
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (heistController.turn == HeistController.Team.Guards && !turnTaken)
@@ -102,7 +98,6 @@ public class GuardAIScript : MonoBehaviour
         {
             moveDestination();
             turnTaken = true;
-
         }
     }
 
@@ -133,7 +128,6 @@ public class GuardAIScript : MonoBehaviour
     {
         enemyRoute.Enqueue(currentWalkPoint);
         walkPointSet = false;
-
     }
 
 }

@@ -16,13 +16,17 @@ public class HeistController : MonoBehaviour
     public GameOverScript gameOverScreen;
     public Team turn;
     ActionPointHandler[] _actionPoints;
+    GuardAIScript[] _guards;
     public ClickToMove ActivePlayer;
+    public GameObject Dice;
 
     // Start is called before the first frame update
     void Start()
     {
         turn = Team.RollingStats;
         _actionPoints = Object.FindObjectsOfType<ActionPointHandler>();
+        _guards = Object.FindObjectsOfType<GuardAIScript>();
+        gameOverScreen = Object.FindObjectOfType<GameOverScript>();
         gameOverScreen.Unset();
     }
 
@@ -37,6 +41,7 @@ public class HeistController : MonoBehaviour
                 DoThievesTurn();
                 break;
             case Team.Guards:
+                DoGuardsTurn();
                 break;
             case Team.RollingStats:
                 RollStats();
@@ -47,6 +52,14 @@ public class HeistController : MonoBehaviour
     void DoThievesTurn()
     {
         if (_actionPoints.All(action => action.actionPoints <= 0))
+        {
+            NextTurn();
+        }
+    }
+
+    void DoGuardsTurn()
+    {
+        if (_guards.All(guard => guard.TurnTaken))
         {
             NextTurn();
         }
@@ -79,8 +92,9 @@ public class HeistController : MonoBehaviour
                 turn = Team.Guards;
                 break;
             case Team.Guards:
-                Debug.Log("Move to Thieves' turn");
-                turn = Team.Thieves;
+                Debug.Log("Move to roll");
+                Instantiate(Dice, new Vector3(-18, 1, 0), Quaternion.identity);
+                turn = Team.RollingStats;
                 break;
         }
     }
