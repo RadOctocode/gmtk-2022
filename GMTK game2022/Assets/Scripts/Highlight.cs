@@ -13,8 +13,11 @@ public class Highlight : MonoBehaviour
         get => _highlighted;
         set
         {
-            _highlighted = value;
-            MarkDirty();
+            if (_highlighted != value)
+            {
+                _highlighted = value;
+                MarkDirty();
+            }
         }
     }
 
@@ -28,6 +31,7 @@ public class Highlight : MonoBehaviour
     {
         if (Highlighted)
         {
+            Debug.Log($"Highlighted as {HighlightColor}");
             meshRenderer.material.color = HighlightColor;
         }
         else
