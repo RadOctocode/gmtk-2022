@@ -14,6 +14,7 @@ public class HeistController : MonoBehaviour
     };
 
     public GameOverScript gameOverScreen;
+    public GameObject player;
     public Team turn;
     ActionPointHandler[] _actionPoints;
     GuardAIScript[] _guards;
@@ -91,8 +92,9 @@ public class HeistController : MonoBehaviour
                 turn = Team.Guards;
                 break;
             case Team.Guards:
+                Vector3 playerLocation = player.transform.position;
                 Debug.Log("Move to roll");
-                Instantiate(Dice, new Vector3(-18, 1, 0), Quaternion.identity);
+                Instantiate(Dice, new Vector3(playerLocation.x + 2, 1, playerLocation.z + 2), Quaternion.identity);
                 turn = Team.RollingStats;
                 break;
         }
