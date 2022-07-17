@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameOverScript : MonoBehaviour
 {
     public void RestartButton(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Setup(){
         gameObject.SetActive(true);
