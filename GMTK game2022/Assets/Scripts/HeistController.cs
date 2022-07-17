@@ -75,7 +75,6 @@ public class HeistController : MonoBehaviour
 
     void EndGame()
     {
-        Debug.Log("Ending game");
         gameOverScreen.Setup();
     }
 
