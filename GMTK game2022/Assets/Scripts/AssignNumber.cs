@@ -40,7 +40,7 @@ public class AssignNumber : MonoBehaviour
         }
 
         if (connectionStatus == BOTH_SIDES_CONNECTED){
-            gamePieceActionPoints.setActionPoints(Roll());
+            gamePieceActionPoints.SetActionPoints(Roll());
             _highlighter.Highlighted = false;
             Destroy(this.gameObject);
         }
