@@ -21,14 +21,13 @@ public class ActionPointHandler : MonoBehaviour
         return actionPoints <= 0;
     }
 
-    void deductActionPoint()
+    public void DeductActionPoint()
     {
         actionPoints = actionPoints - 1;
     }
 
-    public void setActionPoints(int setPoints)
+    public void SetActionPoints(int setPoints)
     {
         actionPoints = setPoints;
     }
-
 }

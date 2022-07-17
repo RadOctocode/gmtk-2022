@@ -4,20 +4,8 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    // Update is called once per frame
-    /*   void Update(){
-           if (Input.GetMouseButtonDown(0)){
-               var hit RaycastHit;
-               var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-               if (Physics.Raycast(ray, hit)){
-                   if (hit.transform.name == "Interactable") Debug.Log("My object is clicked by mouse");
-               }
-           }
-   }*/
-
-    void OnMouseDown()
+    public void Collect()
     {
-        GameObject activePlayer = GameObject.Find("player");
+        Debug.Log("You got me");
     }
 }

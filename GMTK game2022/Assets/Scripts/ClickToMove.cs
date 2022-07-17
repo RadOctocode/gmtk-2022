@@ -12,6 +12,7 @@ public class ClickToMove : MonoBehaviour
     HeistController heistController;
     Highlight _highlighter;
     bool isSneaking = false;
+    Freeze _freeze;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class ClickToMove : MonoBehaviour
         playerLayer = 1 << 7;
         heistController = Object.FindObjectOfType<HeistController>();
         _highlighter = GetComponent<Highlight>();
+        _freeze = GetComponent<Freeze>();
     }
 
     void Update()
@@ -33,7 +35,8 @@ public class ClickToMove : MonoBehaviour
 
     void OnThiefInputs()
     {
-        if(!GetComponent<Freeze>().caught){
+        if (!_freeze.caught)
+        {
             if (heistController.ActivePlayer == null)
             {
                 HandlePlayerSelection();
@@ -77,9 +80,12 @@ public class ClickToMove : MonoBehaviour
                 agent.SetDestination(hitInfo.point);
             }
         }
-        if (agent.remainingDistance <= agent.stoppingDistance) {
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
             isSneaking = false;
-        } else {
+        }
+        else
+        {
             isSneaking = true;
         }
         animatorController.SetBool("sneak", isSneaking);
