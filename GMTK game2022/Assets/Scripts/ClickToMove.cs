@@ -33,13 +33,15 @@ public class ClickToMove : MonoBehaviour
 
     void OnThiefInputs()
     {
-        if (heistController.ActivePlayer == null)
-        {
-            HandlePlayerSelection();
-        }
-        else if (heistController.ActivePlayer == this)
-        {
-            HandlePlayerAction();
+        if(!GetComponent<Freeze>().caught){
+            if (heistController.ActivePlayer == null)
+            {
+                HandlePlayerSelection();
+            }
+            else if (heistController.ActivePlayer == this)
+            {
+                HandlePlayerAction();
+            }
         }
     }
 
