@@ -8,12 +8,14 @@ public class CollectTreasure : MonoBehaviour
     int _interactiveLayer;
     ActionPointHandler _actionPoints;
     ScoreManager scoreHUD;
+    ActionPointManager rollHUD;
 
     void Start()
     {
         _interactiveLayer = 1 << 6;
         _actionPoints = GetComponent<ActionPointHandler>();
         scoreHUD = Object.FindObjectOfType<ScoreManager>();
+        rollHUD = Object.FindObjectOfType<ActionPointManager>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class CollectTreasure : MonoBehaviour
                 currentObject.Collect();
                 Destroy(currentObject.gameObject);
                 _actionPoints.DeductActionPoint();
+                rollHUD.DeductActionPoint();
             }
         }
     }

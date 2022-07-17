@@ -9,9 +9,7 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text scoreText;
     int score = 0;
     // Start is called before the first frame update
-    void Start()
-
-    {
+    void Start() {
         scoreText.text ="$" + score.ToString();
     }
 

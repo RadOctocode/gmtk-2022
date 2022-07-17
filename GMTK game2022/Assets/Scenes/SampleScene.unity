@@ -558,8 +558,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932385597}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 6f43f769da04f3a40931be8da2f3291c, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9dbd9fdf5a1b02c47999cb73514cd4d2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -641,6 +641,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 176719826483616386, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
+      propertyPath: maxNum
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 176719826483616387, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_Name
       value: dice
@@ -651,7 +655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 176719826483616398, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.36
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 176719826483616398, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_LocalPosition.y
@@ -659,7 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 176719826483616398, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.21
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 176719826483616398, guid: d93301e84ba31694b97ed24482a8cd16, type: 3}
       propertyPath: m_LocalRotation.w
