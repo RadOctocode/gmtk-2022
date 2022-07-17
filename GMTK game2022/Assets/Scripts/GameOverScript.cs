@@ -5,9 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour
 {
+    public Camera mainCamera;
+
+    void Start() {
+        mainCamera = Object.FindObjectOfType<Camera>();
+
+    }
+
     public void RestartButton(){
-        Debug.Log("Reloading " + SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Debug.Log("Reloading " + SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("PrototypeCasino");
+
+
     }
     public void Setup(){
         gameObject.SetActive(true);

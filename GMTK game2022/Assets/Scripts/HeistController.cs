@@ -28,6 +28,7 @@ public class HeistController : MonoBehaviour
         _actionPoints = Object.FindObjectsOfType<ActionPointHandler>();
         _guards = Object.FindObjectsOfType<GuardAIScript>();
         gameOverScreen = Object.FindObjectOfType<GameOverScript>();
+
         gameOverScreen.Unset();
     }
 
