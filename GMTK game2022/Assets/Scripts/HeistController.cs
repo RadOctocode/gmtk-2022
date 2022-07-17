@@ -8,8 +8,10 @@ public class HeistController : MonoBehaviour
     {
         Thieves,
         Guards,
+        GameOver
     };
 
+    public GameOverScript gameOverScreen;
     public Team turn;
     ActionPointHandler[] actionPoints;
     public ClickToMove ActivePlayer;
@@ -19,6 +21,20 @@ public class HeistController : MonoBehaviour
     {
         turn = Team.Thieves;
         actionPoints = Object.FindObjectsOfType<ActionPointHandler>();
+        gameOverScreen.Unset();
+
+    }
+
+    void Update()
+    {
+        if(turn == Team.GameOver){
+            EndGame();
+        }
+        
+    }
+
+    void EndGame() {
+        gameOverScreen.Setup();
     }
 
     public void NextTurn()
