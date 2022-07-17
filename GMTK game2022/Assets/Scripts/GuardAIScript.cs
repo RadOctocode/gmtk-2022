@@ -107,6 +107,7 @@ public class GuardAIScript : MonoBehaviour
         agent.SetDestination(chasePiece.transform.position);
 
         if (currentCollider.bounds.Intersects(playerCollider.bounds)) {
+            heistController.turn = HeistController.Team.GameOver;
             chasing = false;
             chasePiece.GetComponent<Freeze>().gotCaught();
             chasePiece = null;
